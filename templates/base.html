@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="author" content="TechyDevs">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>{% block title %}{% endblock title %} | Learning Management System</title>
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="icon" sizes="16x16" href="{% static 'images/favicon.png' %}">
+
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/line-awesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.theme.default.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fancybox.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tooltipster.bundle.css' %}">
+    <link rel="stylesheet" href="{% static 'css/leaflet.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- end inject -->
+</head>
+
+<body>
+
+    <!-- start cssload-loader -->
+    <div class="preloader">
+        <div class="loader">
+            <svg class="spinner" viewBox="0 0 50 50">
+            <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+        </div>
+    </div>
+    <!-- end cssload-loader -->
+
+    <!--======================================
+        START HEADER AREA
+    ======================================-->
+        <header class="header-menu-area">
+        <div class="header-menu-content bg-white">
+            <div class="container">
+                <div class="main-menu-content">
+                    <div class="row align-items-center">
+                        <div class="col-lg-2">
+                            <div class="logo-box">
+                                <a href="{% url 'home' %}" class="logo"><img src="{% static 'images/logo.png' %}" alt="logo"></a>
+                                <div class="user-btn-action">
+                                    <div class="off-canvas-menu-toggle main-menu-toggle icon-element icon-element-sm shadow-sm" data-toggle="tooltip" data-placement="top" title="Main menu">
+                                        <i class="la la-bars"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end col-lg-2 -->
+                        <div class="col-lg-10">
+                            <div class="menu-wrapper">
+                                <nav class="main-menu">
+                                    <ul>
+                                        <li><a href="{% url 'home' %}">Home</a></li>
+                                    </ul>
+                                    <!-- end ul -->
+                                </nav>
+                                <!-- end main-menu -->
+                                <div class="nav-right-button border-left border-left-gray pl-4 mr-3">
+                                    <ul class="generic-list-item">
+                                        <li><a href="{% url 'login' %}">Login</a></li>
+                                    </ul>
+                                </div>
+                                <!-- end nav-right-button -->
+                            </div>
+                            <!-- end menu-wrapper -->
+                        </div>
+                        <!-- end col-lg-10 -->
+                    </div>
+                    <!-- end row -->
+                </div>
+            </div>
+            <!-- end container -->
+        </div>
+        <!-- end header-menu-content -->
+        <div class="off-canvas-menu custom-scrollbar-styled main-off-canvas-menu">
+            <div class="off-canvas-menu-close main-menu-close icon-element icon-element-sm shadow-sm" data-toggle="tooltip" data-placement="left" title="Close menu">
+                <i class="la la-times"></i>
+            </div>
+            <!-- end off-canvas-menu-close -->
+            <ul class="generic-list-item off-canvas-menu-list pt-90px">
+                <li>
+                    <a href="{% url 'home' %}">Home</a>
+                </li>
+            </ul>
+            <div class="btn-box px-4 pt-5 text-center">
+                <a href="{% url 'login' %}" class="btn theme-btn theme-btn-sm theme-btn-transparent"><i class="la la-sign-in mr-1"></i> Login</a>
+            </div>
+        </div>
+        <!-- end off-canvas-menu -->
+        <div class="body-overlay"></div>
+    </header>
+
+    <!-- end header-menu-area -->
+    <!--======================================
+        END HEADER AREA
+======================================-->
+    <div class="section-block"></div>
+
+
+    {% block content %}{% endblock content %}
+
+<!-- ================================
+         END FOOTER AREA
+================================= -->
+<section class="footer-area pt-100px">
+    <div class="copyright-content py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="d-flex flex-wrap align-items-center">
+                        <a href="{% url 'home' %}" class="pr-4">
+                        <img src="{% static 'images/logo.png' %}" alt="footer logo" class="footer__logo">
+                    </a>
+                        <p class="copy-desc">Copyright &copy; 2022 <a href="{% url 'home' %}">Learning Management System</a></p>
+                    </div>
+                </div>
+                <!-- end col-lg-6 -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+    <!-- end copyright-content -->
+</section>
+<!-- end footer-area -->
+<!-- ================================
+      END FOOTER AREA
+================================= -->
+
+<!-- start scroll top -->
+<div id="scroll-top">
+    <i class="la la-arrow-up" title="Go top"></i>
+</div>
+<!-- end scroll top -->
+
+
+    <!-- template js files -->
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.js' %}"></script>
+    <script src="{% static 'js/waypoint.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/fancybox.js' %}"></script>
+    <script src="{% static 'js/jquery.lazy.min.js' %}"></script>
+    <script src="{% static 'js/datedropper.min.js' %}"></script>
+    <script src="{% static 'js/emojionearea.min.js' %}"></script>
+    <script src="{% static 'js/tooltipster.bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+
+</html>

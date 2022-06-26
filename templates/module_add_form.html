@@ -1,0 +1,34 @@
+{% extends "base_dashboard.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Add a module to course{% endblock %}
+
+{% block dashboard %}
+<section class="dashboard-area">
+    {% include 'partials/_instructor_dashboard_menu.html' %}
+    <!-- end off-canvas-menu -->
+    <div class="dashboard-content-wrap">
+        <div class="dashboard-menu-toggler btn theme-btn theme-btn-sm lh-28 theme-btn-transparent mb-4 ml-3">
+            <i class="la la-bars mr-1"></i> Dashboard Nav
+        </div>
+        {% include 'partials/_dashboard_messages.html' %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'course_change' course.pk %}">{{ course.title }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add a module</li>
+            </ol>
+        </nav>
+
+  <h2 class="mb-3">Add a module</h2>
+  <p class="lead">Add the contents for the course module.</p>
+  <form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'course_change' course.pk %}" class="btn btn-outline-secondary" role="button">Nevermind</a>
+  </form>
+
+</div>
+</section>
+{% endblock %}

@@ -1,0 +1,180 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block title %}My Courses{% endblock %}
+
+{% block dashboard %}
+    <!-- ================================
+    START DASHBOARD AREA
+================================= -->
+    <section class="dashboard-area">
+        {% include 'partials/_student_dashboard_menu.html' %}
+        <div class="dashboard-content-wrap">
+            <div class="dashboard-menu-toggler btn theme-btn theme-btn-sm lh-28 theme-btn-transparent mb-4 ml-3">
+                <i class="la la-bars mr-1"></i> Dashboard Nav
+            </div>
+             <!-- ================================
+    START BREADCRUMB AREA
+================================= -->
+    <section class="breadcrumb-area py-5">
+        <div class="container">
+            <div class="breadcrumb-content">
+                <div class="section-heading">
+                    <h2 class="section__title">My Courses</h2>
+                </div>
+                <!-- end section-heading -->
+                <ul class="nav nav-tabs generic-tab pt-30px" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="my-course-tab" data-toggle="tab" href="#my-course" role="tab" aria-controls="my-course" aria-selected="false">
+                        My Courses
+                    </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="all-courses-tab" data-toggle="tab" href="#all-courses" role="tab" aria-controls="all-courses" aria-selected="true">
+                        All courses
+                    </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- end breadcrumb-content -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- end breadcrumb-area -->
+    <!-- ================================
+    END BREADCRUMB AREA
+================================= -->
+
+    <!-- ================================
+       START MY COURSES
+================================= -->
+    <section class="my-courses-area pt-30px pb-90px">
+        <div class="container">
+            <div class="my-course-content-wrap">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="my-course" role="tabpanel" aria-labelledby="my-course-tab">
+                        <div class="my-course-body">
+                            <div class="my-course-cards pt-40px">
+                                <div class="row">
+                                    {% for course in courses %}
+                                        <div class="col-lg-4 responsive-column-half">
+                                            <div class="card card-item">
+                                                <div class="card-image">
+                                                    <a href="" class="d-block">
+                                                    <img class="card-img-top lazy" src="{% static 'images/img-loading.png' %}" data-src="{% static 'images/img8.jpg' %}" alt="{{ all_course.title }}">
+                                                    </a>
+                                                </div>
+                                                <!-- end card-image -->
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><a href="">{{ all_course.title }}</a></h5>
+                                                    <p class="card-text lh-22 pt-2"><span>Instructor:</span> <a href="">{{ all_course.instructor }}</a></p>
+                                                    <div class="rating-wrap d-flex align-items-center justify-content-between pt-3">
+                                                        <a href="#" class="btn theme-btn theme-btn-sm theme-btn-transparent">Enroll</a>
+                                                    </div>
+                                                    <!-- end rating-wrap -->
+                                                </div>
+                                                <!-- end card-body -->
+                                            </div>
+                                            <!-- end card -->
+                                        </div>
+                                        {% empty %} 
+                                        <p>You have not enrolled in any course yet.</p>
+                                        {% endfor %}
+                                </div>
+                                <!-- end row -->
+                            </div>
+                            <!-- end my-course-cards -->
+                        </div>
+                        <!-- end my-course-body -->
+                    </div>
+                    <!-- end tab-pane -->
+                    <div class="tab-pane fade" id="all-courses" role="tabpanel" aria-labelledby="all-courses-tab">
+                        <div class="my-course-body">
+                            <div class="my-collection-item">
+                                <div class="my-course-cards">
+                                    <div class="row">
+                                        {% for all_course in all_courses %}
+                                        <div class="col-lg-4 responsive-column-half">
+                                            <div class="card card-item">
+                                                <div class="card-image">
+                                                    <a href="" class="d-block">
+                                                    <img class="card-img-top lazy" src="{% static 'images/img-loading.png' %}" data-src="{% static 'images/img8.jpg' %}" alt="{{ all_course.title }}">
+                                                    </a>
+                                                </div>
+                                                <!-- end card-image -->
+                                                <div class="card-body">
+                                                    <h5 class="card-title"><a href="">{{ all_course.title }}</a></h5>
+                                                    <p class="card-text lh-22 pt-2"><span>Instructor:</span> <a href="">{{ all_course.instructor }}</a></p>
+                                                    <div class="rating-wrap d-flex align-items-center justify-content-between pt-3">
+                                                        <form action="{% url "student_enroll_course" %}" method="post">
+                                                            {% csrf_token %}
+                                                            {{ enroll_form }}
+                                                            <input class="btn theme-btn theme-btn-sm theme-btn-transparent" type="submit" value="Enroll now">
+                                                          </form>
+                                                        <!-- <a href="#" class="btn theme-btn theme-btn-sm theme-btn-transparent">Enroll</a> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% empty %} 
+                                        <p>There are no Courses here yet</p>
+                                        {% endfor %}
+                                    </div>
+                                    <!-- end row -->
+                                </div>
+                                <!-- end my-course-cards -->
+                            </div>
+                        </div>
+                        <!-- end my-course-body -->
+                    </div>
+                </div>
+                <!-- end tab-content -->
+            </div>
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- end my-courses-area -->
+            <!-- <div class="container-fluid">
+                <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between mb-5">
+                    <div class="media media-card align-items-center">
+                        <div class="media-body">
+                            <h2 class="section__title fs-30">My Courses</h2>
+                        </div>
+                    </div>
+                    <a href="{% url 'instructor_update_profile' %}" class="btn theme-btn d-none d-lg-inline-block">View Course List</a>
+                </div>
+                <div class="section-block mb-5"></div>
+                {% include 'partials/_dashboard_messages.html' %}
+                <div class="dashboard-heading mb-5">
+                    <h3 class="fs-22 font-weight-semi-bold">Enrolled Courses</h3>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        {% for course in courses %}
+                        <div class="card card-item card-preview card-item-list-layout">
+                            <div class="card-image">
+                                <a href="course-details.html" class="d-block">
+                                    <img class="card-img-top lazy" src="{% static 'images/img-loading.png' %}" data-src="{% static 'images/img8.jpg' %}" alt="Card image cap">
+                                </a>
+                                <div class="card-body">
+                                    <h6 class="ribbon ribbon-blue-bg fs-14 mb-3">COS 434</h6>
+                                    <h5 class="card-title mb-3">Artificial Intelligence</h5>
+                                    <p class="card-text mb-3">Instructor: Jose Portilla</p>
+                                    <a href="#" class="btn theme-btn theme-btn-sm theme-btn-transparent">View Course</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% empty %} 
+                        <p>You are yet to enroll in any course. <a href="">View Courses</a></p>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <!-- end dashboard-area -->
+    <!-- ================================
+    END DASHBOARD AREA
+================================= -->
+
+{% endblock dashboard %}

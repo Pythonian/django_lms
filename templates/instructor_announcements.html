@@ -1,0 +1,79 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Announcements{% endblock %}
+
+{% block dashboard %}
+    <!-- ================================
+    START DASHBOARD AREA
+================================= -->
+    <section class="dashboard-area">
+        {% include 'partials/_instructor_dashboard_menu.html' %}
+        <!-- end off-canvas-menu -->
+        <div class="dashboard-content-wrap">
+            <div class="dashboard-menu-toggler btn theme-btn theme-btn-sm lh-28 theme-btn-transparent mb-4 ml-3">
+                <i class="la la-bars mr-1"></i> Dashboard Nav
+            </div>
+            {% if announcements.count > 0 %}
+            <div class="container-fluid">
+                <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between mb-5">
+                    <div class="media media-card align-items-center">
+                        <div class="media-body">
+                            <h2 class="section__title fs-30">Course Announcements</h2>
+                        </div>
+                        <!-- end media-body -->
+                    </div>
+                    <!-- end media -->
+                    <a href="{% url 'create_announcement' %}" class="btn theme-btn d-none d-lg-inline-block">New Announcement</a>
+                </div>
+                <!-- end breadcrumb-content -->
+                <div class="section-block mb-5"></div>
+                {% include 'partials/_dashboard_messages.html' %}
+                <div class="jobs-list pt-5px">
+                    {% for announcement in announcements %}
+                    <div class="card card-item 1hover-s mb-3">
+                        <div class="card-body d-flex flex-wrap align-items-center justify-content-between">
+                            <div class="pr-4">
+                                <h5 class="card-title">{{ announcement.title }}</h5>
+                                <p class="card-text text-gray">{{ announcement.detail }}</p>
+                            </div>
+                            <!-- <div class="btn-box">
+                                <span class="fs-18 text-black">Show detail <i class="la la-arrow-right ml-1"></i></span>
+                            </div> -->
+                            <!-- end btn-box -->
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+                    {% endfor %}
+                    <!-- end card -->
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container-fluid -->
+            {% else %}
+            <section class="cat-area pt-80px pb-80px bg-gray position-relative">
+                <div class="container">
+                    <div class="cta-content-wrap text-center">
+                        <div class="section-heading">
+                            <h6 class="mb-2">Wow! So empty...</h6>
+                            <h2 class="section__title fs-45 lh-55">It does seem like you have not created any Announcement.</h2>
+                        </div>
+                        <!-- end section-heading -->
+                        <div class="cat-btn-box mt-28px">
+                            <a href="{% url 'create_announcement' %}" class="btn theme-btn">Create an Announcement <i class="la la-arrow-right icon ml-1"></i></a>
+                        </div>
+                        <!-- end cat-btn-box -->
+                    </div>
+                    <!-- end cta-content-wrap -->
+                </div>
+                <!-- end container -->
+            </section>
+            {% endif %}
+        </div>
+        <!-- end dashboard-content-wrap -->
+    </section>
+    <!-- end dashboard-area -->
+    <!-- ================================
+    END DASHBOARD AREA
+================================= -->
+
+{% endblock dashboard %}

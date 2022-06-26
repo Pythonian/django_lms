@@ -1,0 +1,87 @@
+{% extends "base_dashboard.html" %}
+
+{% block title %}Quizzes{% endblock %}
+
+{% block dashboard %}
+    <!-- ================================
+    START DASHBOARD AREA
+================================= -->
+    <section class="dashboard-area">
+        {% include 'partials/_instructor_dashboard_menu.html' %}
+        <!-- end off-canvas-menu -->
+        <div class="dashboard-content-wrap">
+            <div class="dashboard-menu-toggler btn theme-btn theme-btn-sm lh-28 theme-btn-transparent mb-4 ml-3">
+                <i class="la la-bars mr-1"></i> Dashboard Nav
+            </div>
+            <div class="container-fluid">
+                <div class="dashboard-heading d-flex flex-wrap align-items-center justify-content-between mb-5">
+                    <div class="media media-card align-items-center">
+                        <div class="media-body">
+                            <h3 class="fs-22 font-weight-semi-bold">Quizzes</h3>
+                        </div>
+                    </div>
+                    <a href="{% url 'quiz_add' %}" class="btn theme-btn d-none d-lg-inline-block">New Quiz</a>
+                </div>
+                {% include 'partials/_dashboard_messages.html' %}
+                <div class="table-responsive pb-4">
+                    <table class="table generic-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Title</th>
+                                <th scope="col">Questions</th>
+                                <th scope="col">Taken</th>
+                                <th scope="col">Results</th>
+                                <th scope="col">Created</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for quiz in quizzes %}
+                            <tr>
+                                <th scope="row">
+                                    <ul class="generic-list-item">
+                                        <li>
+                                            <a href="{% url 'quiz_change' quiz.pk %}">{{ quiz.name }}</a>
+                                        </li>
+                                    </ul>
+                                </th>
+                                <td>
+                                    <ul class="generic-list-item">
+                                        <li>{{ quiz.questions_count }}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="generic-list-item">
+                                        <li>{{ quiz.taken_count }}</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="generic-list-item">
+                                        <li><a href="{% url 'quiz_results' quiz.pk %}">View</a></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul class="generic-list-item">
+                                        <li>{{ quiz.created|date:"F j, Y" }}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td class="bg-light text-center font-italic" colspan="5">You haven't created any quiz yet.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table -->
+            </div>
+            <!-- end container-fluid -->
+        </div>
+        <!-- end dashboard-content-wrap -->
+    </section>
+    <!-- end dashboard-area -->
+    <!-- ================================
+    END DASHBOARD AREA
+================================= -->
+
+{% endblock dashboard %}

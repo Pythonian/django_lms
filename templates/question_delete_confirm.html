@@ -1,0 +1,45 @@
+{% extends 'base_dashboard.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Confirm Deletion{% endblock %}
+
+{% block dashboard %}
+<section class="dashboard-area">
+    {% include 'partials/_instructor_dashboard_menu.html' %}
+    <!-- end off-canvas-menu -->
+    <div class="dashboard-content-wrap">
+        <div class="dashboard-menu-toggler btn theme-btn theme-btn-sm lh-28 theme-btn-transparent mb-4 ml-3">
+            <i class="la la-bars mr-1"></i> Dashboard Nav
+        </div>
+        <div class="container-fluid">
+
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'instructor_quizzes' %}">My Quizzes</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'quiz_change' quiz.pk %}">{{ quiz.name }}</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'question_change' quiz.pk question.pk %}">{{ question.text }}</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Confirm deletion</li>
+                </ol>
+            </nav>
+
+            <div class="cta-content-wrap text-center">
+                <div class="section-heading">
+                    <h2 class="mb-3">Confirm deletion</h2>
+                    <p class="lead">Are you sure you want to delete the question <strong>"{{ question.text }}"</strong>? There is no going back.</p>
+                </div>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="cat-btn-box mt-28px">
+                    <button type="submit" class="btn btn-danger btn-lg">Yes, I'm sure</button>
+                    <a href="{% url 'question_change' quiz.pk question.pk %}" class="btn theme-btn" role="button">Nevermind</a>
+                    </div>
+                </form>
+            </div>
+            
+            
+            
+        </div>
+    </div>
+</section>
+{% endblock %}

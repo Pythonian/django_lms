@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <section class="contact-area section--padding position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 mx-auto">
+                    <div class="card card-item">
+                        <div class="card-body">
+                            <h3 class="card-title text-center fs-24 lh-35 pb-4">Login to Your Account!</h3>
+                            <form method="post" class="pt-4" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <input type="hidden" name="next" value="{{ next }}" />
+                                <!-- end input-box -->
+                                <div class="btn-box">
+                                    <!-- <div class="d-flex align-items-center justify-content-between pb-4">
+                                        <a href="#" class="btn-text">Forgot my password?</a>
+                                    </div> -->
+                                    <button class="btn theme-btn" type="submit">Login Account <i class="la la-arrow-right icon ml-1"></i></button>
+                                    <p class="fs-14 pt-4">
+                                        Don't have an account? 
+                                        <a href="{% url 'student_signup' %}" class="text-color hover-underline">Register as a Student</a> | 
+                                        <a href="{% url 'instructor_signup' %}" class="text-color hover-underline">Register as an Instructor</a>
+                                    </p>
+                                    <!-- <p class="fs-14 pt-2">Don't have an account? <a href="{% url " class="text-color hover-underline">Register</a></p> -->
+                                </div>
+                                <!-- end btn-box -->
+                            </form>
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col-lg-7 -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+    <!-- end contact-area -->
+    <!-- ================================
+       END CONTACT AREA
+================================= -->
+
+{% endblock content %}

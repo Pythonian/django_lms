@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+    <section class="contact-area section--padding position-relative">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-7 mx-auto">
+                    <div class="card card-item">
+                        <div class="card-body">
+                            <h3 class="card-title text-center fs-24 lh-35 pb-4">Register as {{ user_type }}</h3>
+                            <div class="section-block"></div>
+                            {% if form.errors %}
+                            <p>Your username and password didn't match. Please try again.</p>
+                            {% endif %}
+                            <form method="post" class="pt-4">
+                                {% csrf_token %}
+                                {{ form|crispy }}
+                                <input type="hidden" name="next" value="{{ next }}">
+                                <div class="btn-box">
+                                    <button class="btn theme-btn" type="submit">Register Account <i class="la la-arrow-right icon ml-1"></i></button>
+                                    <p class="fs-14 pt-2">Already have an account? <a href="{% url 'login' %}" class="text-color hover-underline">Log in</a></p>
+                                </div>
+                                <!-- end btn-box -->
+                            </form>
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+                    <!-- end card -->
+                </div>
+                <!-- end col-lg-7 -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </section>
+
+{% endblock content %}

@@ -1,0 +1,58 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block title %}Welcome, {{ user.username|title }}{% endblock %}
+
+{% block dashboard %}
+    <!-- ================================
+    START DASHBOARD AREA
+================================= -->
+    <section class="dashboard-area">
+        {% include 'partials/_instructor_dashboard_menu.html' %}
+        <!-- end off-canvas-menu -->
+        <div class="dashboard-content-wrap">
+            <div class="dashboard-menu-toggler btn theme-btn theme-btn-sm lh-28 theme-btn-transparent mb-4 ml-3">
+                <i class="la la-bars mr-1"></i> Dashboard Nav
+            </div>
+            <div class="container-fluid">
+                <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between mb-5">
+                    <div class="media media-card align-items-center">
+                        <div class="media-body">
+                            <h2 class="section__title fs-30">Welcome, {{ user.username|title }}</h2>
+                        </div>
+                        <!-- end media-body -->
+                    </div>
+                    <!-- end media -->
+                    <a href="{% url 'instructor_update_profile' %}" class="btn theme-btn d-none d-lg-inline-block">Edit Profile</a>
+                </div>
+                <!-- end breadcrumb-content -->
+                <div class="section-block mb-5"></div>
+                {% include 'partials/_dashboard_messages.html' %}
+                <div class="dashboard-heading mb-5">
+                    <h3 class="fs-22 font-weight-semi-bold">My Profile</h3>
+                </div>
+                <div class="profile-detail pb-5">
+                    <ul class="generic-list-item generic-list-item-flash">
+                        <li><span class="profile-name">Registration Date:</span><span class="profile-desc">{{ request.user.date_joined }}</span></li>
+                        <li><span class="profile-name">User Name:</span><span class="profile-desc">{{ request.user.username }}</span></li>
+                        <li><span class="profile-name">First Name:</span><span class="profile-desc">{{ request.user.first_name|default:"Edit your profile and add a First name" }}</span></li>
+                        <li><span class="profile-name">Last Name:</span><span class="profile-desc">{{ request.user.last_name|default:"Edit your profile and add a Last name" }}</span></li>
+                        <li><span class="profile-name">Email:</span><span class="profile-desc">{{ request.user.email }}</span></li>
+                        <li>
+                            <span class="profile-name">About:</span>
+                            <span class="profile-desc">{{ request.user.instructor_profile.about|default:"Edit your profile and add a Bio" }}</span>
+                        </li>
+                    </ul>
+                </div>
+                <!-- end row -->
+            </div>
+            <!-- end container-fluid -->
+        </div>
+        <!-- end dashboard-content-wrap -->
+    </section>
+    <!-- end dashboard-area -->
+    <!-- ================================
+    END DASHBOARD AREA
+================================= -->
+
+{% endblock dashboard %}

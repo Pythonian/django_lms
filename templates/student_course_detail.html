@@ -1,0 +1,150 @@
+{% extends "base_dashboard.html" %}
+{% load static %}
+
+{% block title %}COS {{ course.code }}: {{ course.title }}{% endblock %}
+
+{% block dashboard %}
+    <!-- ================================
+    START DASHBOARD AREA
+================================= -->
+    <section class="dashboard-area">
+        {% include 'partials/_student_dashboard_menu.html' %}
+        <!-- end off-canvas-menu -->
+        <div class="dashboard-content-wrap">
+            <div class="dashboard-menu-toggler btn theme-btn theme-btn-sm lh-28 theme-btn-transparent mb-4 ml-3">
+                <i class="la la-bars mr-1"></i> Dashboard Nav
+            </div>
+            
+            <!--======================================
+        START COURSE DETAILS AREA
+        ======================================-->
+            {% include 'partials/_dashboard_messages.html' %}
+            <section class="course-details-area pb-20px">
+                <div class="container">
+                    <div class="breadcrumb-content d-flex flex-wrap align-items-center justify-content-between">
+                        <div class="media media-card align-items-center">
+                            <div class="media-body">
+                                <h2 class="section__title fs-30">COS {{ course.code }}: {{ course.title }}</h2>
+                            </div>
+                            <!-- end media-body -->
+                        </div>
+                        <!-- end media -->
+                        <a href="{% url 'instructor_course_update' course.pk %}" class="btn theme-btn d-none d-lg-inline-block">Edit</a>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 pb-5">
+                            <div class="course-details-content-wrap pt-90px">
+                                <!-- end course-overview-card -->
+                                <div class="course-overview-card">
+                                    <h3 class="fs-24 font-weight-semi-bold pb-3">Overview</h3>
+                                    <p class="fs-15 pb-2">{{ course.overview }}</p>
+                                </div>
+                                <!-- end course-overview-card -->
+                                <div class="card card-item">
+                                    <div class="card-body">
+                                        <h3 class="card-title fs-18 pb-2">Course Features</h3>
+                                        <div class="divider"><span></span></div>
+                                        <ul class="generic-list-item generic-list-item-flash">
+                                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-play-circle-o mr-2 text-color"></i>Modules</span> 4</li>
+                                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-bolt mr-2 text-color"></i>Quizzes</span> 26</li>
+                                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-clock mr-2 text-color"></i>Announcements</span> 4</li>
+                                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-file-text-o mr-2 text-color"></i>Resources</span> 12</li>
+                                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-language mr-2 text-color"></i>Language</span> English</li>
+                                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-lightbulb mr-2 text-color"></i>Level</span> 400</li>
+                                            <li class="d-flex align-items-center justify-content-between"><span><i class="la la-users mr-2 text-color"></i>Students</span> 30,506</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="course-overview-card">
+                                    <div class="curriculum-header d-flex align-items-center justify-content-between pb-4">
+                                        <h3 class="fs-24 font-weight-semi-bold">Course Outline</h3>
+                                        <div class="curriculum-duration fs-15">
+                                            <span class="curriculum-total__text mr-2"><strong class="text-black font-weight-semi-bold">Total:</strong> 4 Modules</span>
+                                        </div>
+                                    </div>
+                                    <div class="curriculum-content">
+                                        <div id="accordion" class="generic-accordion">
+                                            <div class="card">
+                                                <div class="card-header" id="headingOne">
+                                                    <button class="btn btn-link d-flex align-items-center justify-content-between" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                                   <i class="la la-plus"></i>
+                                                   <i class="la la-minus"></i>
+                                                   Course introduction
+                                                   <span class="fs-15 text-gray font-weight-medium">6 lectures</span>
+                                               </button>
+                                                </div>
+                                                <!-- end card-header -->
+                                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                                    <div class="card-body">
+                                                        <ul class="generic-list-item">
+                                                            <li>
+                                                                <a href="#" class="d-flex align-items-center justify-content-between text-color" data-toggle="modal" data-target="#previewModal">
+                                                               <span>
+                                                                   <i class="la la-play-circle mr-1"></i>
+                                                                   Introductory words
+                                                                   <span class="ribbon ml-2 fs-13">Preview</span>
+                                                               </span>
+                                                               <span>02:27</span>
+                                                           </a>
+                                                            </li>
+                                                            <li>
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <span>
+                                                                   <i class="la la-play-circle mr-1"></i>
+                                                                   Remaster in Progress
+                                                               </span>
+                                                                    <span>03:09</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <span>
+                                                                   <i class="la la-play-circle mr-1"></i>
+                                                                   Video Quality
+                                                               </span>
+                                                                    <span>01:16</span>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <div class="d-flex align-items-center justify-content-between">
+                                                                    <span>
+                                                                   <i class="la la-play-circle mr-1"></i>
+                                                                   Important Tip - Source Code
+                                                               </span>
+                                                                    <span>02:07</span>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <!-- end card-body -->
+                                                </div>
+                                                <!-- end collapse -->
+                                            </div>
+                                        </div>
+                                        <!-- end generic-accordion -->
+                                    </div>
+                                    <!-- end curriculum-content -->
+                                </div>
+                                <!-- end course-overview-card -->
+                            </div>
+                            <!-- end course-details-content-wrap -->
+                        </div>
+                        <!-- end col-lg-12 -->
+                    </div>
+                    <!-- end row -->
+                </div>
+                <!-- end container -->
+            </section>
+            <!-- end course-details-area -->
+            <!--======================================
+                END COURSE DETAILS AREA
+        ======================================-->
+        </div>
+        <!-- end dashboard-content-wrap -->
+    </section>
+    <!-- end dashboard-area -->
+    <!-- ================================
+    END DASHBOARD AREA
+================================= -->
+
+{% endblock dashboard %}

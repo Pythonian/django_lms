@@ -1,0 +1,35 @@
+{% extends "base_dashboard.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Add questions to quiz{% endblock %}
+
+{% block dashboard %}
+<section class="dashboard-area">
+    {% include 'partials/_instructor_dashboard_menu.html' %}
+    <!-- end off-canvas-menu -->
+    <div class="dashboard-content-wrap">
+        <div class="dashboard-menu-toggler btn theme-btn theme-btn-sm lh-28 theme-btn-transparent mb-4 ml-3">
+            <i class="la la-bars mr-1"></i> Dashboard Nav
+        </div>
+        {% include 'partials/_dashboard_messages.html' %}
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'instructor_quizzes' %}">My Quizzes</a></li>
+                <li class="breadcrumb-item"><a href="{% url 'quiz_change' quiz.pk %}">{{ quiz.name }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Add a new question</li>
+            </ol>
+        </nav>
+
+  <h2 class="mb-3">Add a new question</h2>
+  <p class="lead">Add first the text of the question. In the next step you will be able to add the possible answers.</p>
+  <form method="post" novalidate>
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="{% url 'quiz_change' quiz.pk %}" class="btn btn-outline-secondary" role="button">Nevermind</a>
+  </form>
+
+</div>
+</section>
+{% endblock %}
