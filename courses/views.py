@@ -1,23 +1,22 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login
-from .models import (TakenQuiz,
-    Course, Announcement, Assignment, Answer, Question, Quiz, User)
-from .forms import CourseForm, AnnouncementForm, AssignmentForm, ModuleForm
-
+from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django.db.models import Avg, Count
 from django.forms import inlineformset_factory
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse, reverse_lazy
 from django.utils.decorators import method_decorator
-from django.views.generic import (CreateView, DeleteView, DetailView,
-                                  UpdateView, ListView, View, FormView)
+from django.views.generic import (CreateView, DeleteView, DetailView, FormView,
+                                  ListView, UpdateView, View)
+
 from .decorators import instructor_required, student_required
-from .forms import (
-    BaseAnswerInlineFormSet, QuestionForm,
-    StudentSignUpForm, InstructorSignUpForm, StudentProfileForm,
-    UserForm, InstructorProfileForm, CourseEnrollForm)
+from .forms import (AnnouncementForm, AssignmentForm, BaseAnswerInlineFormSet,
+                    CourseEnrollForm, CourseForm, InstructorProfileForm,
+                    InstructorSignUpForm, ModuleForm, QuestionForm,
+                    StudentProfileForm, StudentSignUpForm, UserForm)
+from .models import (Announcement, Answer, Assignment, Course, Question, Quiz,
+                     TakenQuiz, User)
 
 
 class InstructorSignUpView(CreateView):

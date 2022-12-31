@@ -16,7 +16,7 @@ class InstructorProfile(models.Model):
     about = models.TextField(blank=True)
 
     def __str__(self):
-        return f"Profile for {self.user.username}"
+        return f"{self.user.username}"
 
 
 class StudentProfile(models.Model):
@@ -39,7 +39,7 @@ class StudentProfile(models.Model):
         return questions
 
     def __str__(self):
-        return f"Profile for {self.user.username}"
+        return f"{self.user.username}"
 
 
 class Course(models.Model):
@@ -116,6 +116,9 @@ class Announcement(models.Model):
     class Meta:
         ordering = ['-created']
 
+    def __str__(self):
+        return self.title
+
 
 class Assignment(models.Model):
     title = models.CharField(max_length=100)
@@ -129,6 +132,9 @@ class Assignment(models.Model):
 
     class Meta:
         ordering = ['-created']
+
+    def __str__(self):
+        return self.title
 
 
 class Quiz(models.Model):
